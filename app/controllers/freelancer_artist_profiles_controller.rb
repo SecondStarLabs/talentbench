@@ -64,6 +64,6 @@ class FreelancerArtistProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def freelancer_artist_profile_params
-      params.require(:freelancer_artist_profile).permit(:name, :country_alpha2, :pay_rate, :availability, :notes, :website_url)
+      params.require(:freelancer_artist_profile).permit(:name, :country_alpha2, :pay_rate, :availability, :rich_notes, :website_url)
     end
 end

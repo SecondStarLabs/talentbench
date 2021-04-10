@@ -32,10 +32,10 @@
   </div>
 
   <div class="form-group">
+  <div class="field">
     <%= form.label :notes %>
-    <p>(rich notes goes here)</p>
-
-    <%= form.text_field :notes, class: 'form-control' %>
+    <%= form.rich_text_area :rich_notes %>
+  </div>
   </div>
 
   <div class="form-group">
