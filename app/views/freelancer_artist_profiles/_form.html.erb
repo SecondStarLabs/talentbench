@@ -1,0 +1,61 @@
+<%= form_with(model: freelancer_artist_profile, local: true) do |form| %>
+  <% if freelancer_artist_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(freelancer_artist_profile.errors.count, "error") %> prohibited this freelancer_artist_profile from being saved:</h2>
+
+      <ul>
+      <% freelancer_artist_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :country_alpha2 %>
+    <%= form.text_field :country_alpha2, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :pay_rate %>
+    <%= form.text_field :pay_rate, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :availability %>
+    <%= form.text_field :availability, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :notes %>
+    <p>(rich notes goes here)</p>
+
+    <%= form.text_field :notes, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :website_url %>
+    <%= form.text_field :website_url, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if freelancer_artist_profile.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', freelancer_artist_profile, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if freelancer_artist_profile.persisted? %>
+      <%= link_to "Cancel", freelancer_artist_profile, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", freelancer_artist_profiles_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
