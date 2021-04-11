@@ -1,0 +1,38 @@
+<div class="page-header">
+  <%= link_to freelancer_artist_profiles_path, class: 'btn btn-default' do %>
+    All Freelancer_artist_profiles
+  <% end %>
+  <%= link_to edit_freelancer_artist_profile_path(@freelancer_artist_profile), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show freelancer_artist_profile</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @freelancer_artist_profile.name %></dd>
+
+  <dt>Skills</dt>
+  <dd>
+    <% @freelancer_artist_profile.skills.each do |skill| %>
+      <li class="skill">
+        <%= skill.name  %>      
+      </li>
+    <% end  %>
+  </dd>
+  <dt>Country alpha2:</dt>
+  <dd><%= @freelancer_artist_profile.country_alpha2 %></dd>
+
+  <dt>Pay rate:</dt>
+  <dd><%= @freelancer_artist_profile.pay_rate %></dd>
+
+  <dt>Availability:</dt>
+  <dd><%= @freelancer_artist_profile.availability %></dd>
+
+  <dt>Notes:</dt>
+  <dd><%= @freelancer_artist_profile.rich_notes %></dd>
+
+  <dt>Website url:</dt>
+  <dd><%= @freelancer_artist_profile.website_url %></dd>
+
+</dl>

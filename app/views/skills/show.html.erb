@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to skills_path, class: 'btn btn-default' do %>
+    All Skills
+  <% end %>
+  <%= link_to edit_skill_path(@skill), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show skill</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Color:</dt>
+  <dd><%= @skill.color %></dd>
+
+  <dt>Name:</dt>
+  <dd><%= @skill.name %></dd>
+
+  <dt>Description:</dt>
+  <dd><%= @skill.description %></dd>
+
+</dl>
