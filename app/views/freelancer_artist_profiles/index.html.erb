@@ -1,0 +1,51 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Freelancer_artist_profiles</h1>
+  </div>
+
+  <%= image_tag("freelancer_matrix", width: "800px")  %>
+  
+  <div class="col-sm-6 text-right">
+  <%= link_to new_freelancer_artist_profile_path, class: 'btn btn-primary' do %>
+    Add New Freelancer artist profile
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Name</th>
+    
+
+            <th>Country alpha2</th>
+            <th>Pay rate</th>
+            <th>Availability</th>
+            <th>Website url</th>
+            
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @freelancer_artist_profiles.each do |freelancer_artist_profile| %>
+        <%= content_tag :tr, id: dom_id(freelancer_artist_profile), class: dom_class(freelancer_artist_profile) do %>
+          
+            <td><%= link_to freelancer_artist_profile.name, freelancer_artist_profile %></td>
+          
+
+                      <td><%= freelancer_artist_profile.country_alpha2 %></td>
+                      <td><%= freelancer_artist_profile.pay_rate %></td>
+                      <td><%= freelancer_artist_profile.availability %></td>
+                      <td><%= freelancer_artist_profile.website_url %></td>
+          
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
