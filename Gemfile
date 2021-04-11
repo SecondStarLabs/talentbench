@@ -77,3 +77,4 @@ gem 'whenever', require: false
 
 # custom for app
 gem 'countries', '~> 3.1'
+gem 'acts-as-taggable-on', '~> 7.0'
