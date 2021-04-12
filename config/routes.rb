@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :freelancer_artist_profiles
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
+  get '/index', to: "freelancer_artist_profiles#index", as: :charged_rate
+
+
 authenticate :user, lambda { |u| u.admin? } do
   mount Sidekiq::Web => '/sidekiq'
 

@@ -50,6 +50,16 @@
     <%= skills_fields.text_field :name %>
   <% end %>
   </div>
+
+  <div class="form-group">
+    <%= form.label :charged_rate_list, "Charged Rate" %>
+    <%= 
+      form.text_field :charged_rate_list, 
+      value: @freelancer_artist_profile.send(:charged_rate_list).to_s, 
+      placeholder: 'Choose a number from 1-5'
+    %>
+  </div>
+
 <div class="form-group">
   <label for="skill_ids" class="skill_ids">Skills</label>
   <%= form.collection_check_boxes :skill_ids, Skill.all, :id, :name  %>

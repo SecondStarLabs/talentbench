@@ -10,7 +10,7 @@
 
 // actiontext
 @import "./actiontext.scss";
-
+@import "./freelancer_artist_profiles";
 // Fixes bootstrap nav-brand container overlap
 @include media-breakpoint-down(xs) {
   .container {
