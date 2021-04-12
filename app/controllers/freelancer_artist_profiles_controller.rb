@@ -3,7 +3,12 @@ class FreelancerArtistProfilesController < ApplicationController
 
   # GET /freelancer_artist_profiles or /freelancer_artist_profiles.json
   def index
-    @freelancer_artist_profiles = FreelancerArtistProfile.all
+    if params[:charged_rate].present?
+      # @freelancer_artist_profiles = FreelancerArtistProfile.tagged_with(params[:charged_rate])
+      @freelancer_artist_profiles = FreelancerArtistProfile.tagged_with(params[:charged_rate], :on => :charged_rates, :any => true)
+    else
+      @freelancer_artist_profiles = FreelancerArtistProfile.all
+    end
   end
 
   # GET /freelancer_artist_profiles/1 or /freelancer_artist_profiles/1.json
@@ -53,6 +58,14 @@ class FreelancerArtistProfilesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to freelancer_artist_profiles_url, notice: "Freelancer artist profile was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def rate_charged
+    if params[:charged_rate].present?
+      @freelancer_artist_profile = FreelancerArtistProfile.tagged_with(params[:charged_rate])
+    else
+      @freelancer_artist_profile = FreelancerArtistProfile.all
     end
   end
 
