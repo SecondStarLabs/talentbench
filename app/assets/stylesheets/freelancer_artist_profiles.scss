@@ -11,5 +11,18 @@
 
     .section {
         background: #D3D3D3;
+        
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .charged-rate-1 {
+        background: rgba(0, 0, 255, .75);
+    }
+
+    .ability-1 {
+        background: rgba(255, 0, 0, .5);
+
     }
 }

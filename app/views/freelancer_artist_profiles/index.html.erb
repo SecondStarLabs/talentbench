@@ -3,80 +3,64 @@
  <br>
  <span class="ability">Ability (least to most, top to bottom)</span>
 
-<div class="ability-x-charged-rate matrix">
-  <a href="" class="ability-x-charged-rate section ability-1 charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-5"></a>
-  
-</div>
 
 <div class="ability-x-charged-rate matrix">
-  <a href="" class="ability-x-charged-rate section ability-1 charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-1  charged-rate-5"></a>
+<% 
+  cells             = (1..25).to_a
+  ability           = 1
+  charged_rate      = 0
+  btn_hash_array    = []
+  cell_width        = 5
+  rate_category     = params[:charged_rate]
+  ability_category  = params[:charged_rate]
 
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-2  charged-rate-5"></a>
 
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-3  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-4  charged-rate-5"></a>
-
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-1">first col</a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-2"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-3"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-4"></a>
-  <a href="" class="ability-x-charged-rate section ability-5  charged-rate-5"></a>
+  cells.each do |cell|
+  charged_rate += 1
+  btn_hash = {ability: ability, charged_rate: charged_rate}
   
-</div>
+  btn_hash_array << btn_hash
 
-    <% @freelancer_artist_profiles.each do |fap| %>
-      <h2><%= fap.first_name %></h2>
-      <div class="tags">
-        <% fap.charged_rate_list.each do |t| %>
-          <%= link_to "Rate Charged Category #{t}", freelancer_artist_profiles_path(charged_rate: t) %>
-        <% end %>
+    if cell.modulo(cell_width) == 0
+      ability += 1
+      charged_rate  = 0
+    end
+
+  end
+
+%>
+  <% btn_hash_array.each do |btn| %>
+    
+    <% 
+      selection_status = "border: 0;"
+      if params[:charged_rate] == btn[:charged_rate].to_s && btn[:ability].to_s == params[:ability]
+        selection_status = "background: orange;"
+      end
+    
+    %>
+    <%= link_to(freelancer_artist_profiles_path(:charged_rate => btn[:charged_rate], :ability => btn[:ability])) do %>
+      <div class="grid-btn section " style='<%= selection_status %>'>
+        <span style="color: yellow;justify: left;">
+          <% (1..btn[:ability]).to_a.each do %>
+          <i class="fas fa-star" ></i>
+          <% end %>                
+        </span> 
+        &nbsp;&nbsp;&nbsp;
+        <span style="color: green;justify: right;">
+          <% (1..btn[:charged_rate]).to_a.each do %>
+          <i class="fas fa-dollar-sign" style="color: green;"></i>
+          <% end %>                
+        </span> 
       </div>
     <% end %>
+
+  <% end %>
+
+
+
+  
+</div>
+
 
 
 
@@ -85,7 +69,6 @@
     <h1>Freelancer_artist_profiles</h1>
   </div>
 
-  <%= image_tag("https://p248.p4.n0.cdn.getcloudapp.com/items/7KuPLrnG/9dfef67d-3736-4cb5-a26a-3931676f1dea.png?v=13434075d60e8eeee3572945c6b0f13e", width: "800px")  %>
   
   <div class="col-sm-6 text-right">
   <%= link_to new_freelancer_artist_profile_path, class: 'btn btn-primary' do %>
